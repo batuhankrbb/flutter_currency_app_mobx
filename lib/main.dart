@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_currency_app_mobx/models/currency_model.dart';
+import 'package:flutter_currency_app_mobx/services/currency_service.dart';
+import 'package:flutter_currency_app_mobx/utils/get_it_launch.dart';
 
 void main() {
+  launchGetIt();
   runApp(MyApp());
 }
 
@@ -48,7 +52,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  void _incrementCounter() {
+  void _incrementCounter() async {
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
@@ -57,6 +61,12 @@ class _MyHomePageState extends State<MyHomePage> {
       // called again, and so nothing would appear to happen.
       _counter++;
     });
+    var currencies = await getIt.get<CurrencyService>().getLatestCurrencies();
+    print(currencies.toString());
+
+    var oldCurrencies =
+        await getIt.get<CurrencyService>().getOldCurrenciesFrom2013();
+    print(oldCurrencies);
   }
 
   @override
