@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_currency_app_mobx/models/currency_model.dart';
 import 'package:flutter_currency_app_mobx/services/currency_service.dart';
 import 'package:flutter_currency_app_mobx/utils/get_it_launch.dart';
+import 'package:flutter_currency_app_mobx/views/counter_page.dart';
 import 'package:flutter_currency_app_mobx/views/currency_list_page.dart';
 
 void main() {
@@ -57,7 +58,7 @@ class MyApp extends StatelessWidget {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) {
-              return CurrencyListPage();
+              return CounterPage();
             },
           ),
         );

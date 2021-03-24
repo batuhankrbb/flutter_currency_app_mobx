@@ -47,6 +47,21 @@ mixin _$CounterViewModel on _CounterViewModel, Store {
     });
   }
 
+  final _$oldValuesListAtom = Atom(name: '_CounterViewModel.oldValuesList');
+
+  @override
+  ObservableList<int> get oldValuesList {
+    _$oldValuesListAtom.reportRead();
+    return super.oldValuesList;
+  }
+
+  @override
+  set oldValuesList(ObservableList<int> value) {
+    _$oldValuesListAtom.reportWrite(value, super.oldValuesList, () {
+      super.oldValuesList = value;
+    });
+  }
+
   final _$_CounterViewModelActionController =
       ActionController(name: '_CounterViewModel');
 
@@ -77,6 +92,7 @@ mixin _$CounterViewModel on _CounterViewModel, Store {
     return '''
 counterValue: ${counterValue},
 containerColor: ${containerColor},
+oldValuesList: ${oldValuesList},
 counterFancyText: ${counterFancyText}
     ''';
   }

@@ -13,6 +13,9 @@ abstract class _CounterViewModel with Store {
   @observable
   Color containerColor = Colors.black;
 
+  @observable
+  ObservableList<int> oldValuesList = ObservableList<int>();
+
   List<ReactionDisposer> _disposers;
 
   @computed
@@ -23,6 +26,7 @@ abstract class _CounterViewModel with Store {
   void setup() {
     _disposers = [
       reaction<int>((_) => counterValue, (newCounterValue) {
+        oldValuesList.add(counterValue);
         print("New Counter Value = $newCounterValue");
         print("Fetching data from the internet -- Fake");
         containerColor = RandomColor().randomColor();
